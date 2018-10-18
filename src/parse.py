@@ -37,6 +37,8 @@ class Parse:
         totalCount = self.json['content']['positionResult']['totalCount']  # 职位总数量
         resultSize = self.json['content']['positionResult']['resultSize']  # 每一页显示的数量
         pageCount = int(totalCount) // int(resultSize) + 1  # 页面数量
+        # if pageCount>100:
+        #     pageCount = 100
         return pageCount
 
     def parseInfo(self):
@@ -46,16 +48,35 @@ class Parse:
         info = []
         for position in self.json['content']['positionResult']['result']:
             i = {}
+            i['city'] = position['city']
+            i['businessZones'] = position['businessZones']
+            i['companyShortName'] = position['companyShortName']
             i['companyName'] = position['companyFullName']
             i['companyDistrict'] = position['district']
             i['companyLabel'] = position['companyLabelList']
             i['companySize'] = position['companySize']
             i['companyStage'] = position['financeStage']
             i['companyType'] = position['industryField']
+            i['industryLables'] = position['industryLables']
             i['positionType'] = position['firstType']
             i['positionEducation'] = position['education']
             i['positionAdvantage'] = position['positionAdvantage']
             i['positionSalary'] = position['salary']
             i['positionWorkYear'] = position['workYear']
+
+            i['isSchoolJob'] = position['isSchoolJob']
+            i['jobNature'] = position['jobNature']
+            i['positionLables'] = position['positionLables']
+            i['positionName'] = position['positionName']
+            i['resumeProcessDay'] = position['resumeProcessDay']
+            i['resumeProcessRate'] = position['resumeProcessRate']
+            i['secondType'] = position['secondType']
+            i['skillLables'] = position['skillLables']
+            i['thirdType'] = position['thirdType']
+            i['latitude'] = position['latitude']
+            i['longitude'] = position['longitude']
+            i['linestaion'] = position['linestaion']
+            i['createTime'] = position['createTime']
+
             info.append(i)
         return info
