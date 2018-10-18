@@ -37,8 +37,8 @@ class Parse:
         totalCount = self.json['content']['positionResult']['totalCount']  # 职位总数量
         resultSize = self.json['content']['positionResult']['resultSize']  # 每一页显示的数量
         pageCount = int(totalCount) // int(resultSize) + 1  # 页面数量
-        # if pageCount>100:
-        #     pageCount = 100
+        if pageCount>200:
+            pageCount = 200
         return pageCount
 
     def parseInfo(self):

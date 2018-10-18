@@ -37,15 +37,16 @@ def getInfo(url, para):
             info = info + getInfoDetail(generalParse)
 
             '''
-            每50页向文件写一次
+            每5页向文件写一次
+            
             '''
             dd = 5
             if(i % dd == 0):
                 flag = processInfo(info, para)
                 if flag:
-                    print("文件写{0}~{1}页的信息".format((i-dd),i))
+                    print("文件写{0}~{1}页的信息".format((i-dd+1),i))
                     info=[]
-            if (pageCount-i) < 50:
+            if (pageCount-i) < 5:
                 flag = processInfo(info, para)
                 time.sleep(5)
                 if flag:
@@ -133,10 +134,11 @@ if __name__ == '__main__':
     cityList = [u'北京']
     url = 'https://www.lagou.com/jobs/positionAjax.json'
     for city in cityList:
-        print('爬取%s' % city)
-        para = {'first': 'true', 'pn': '1', 'kd': kdList[0], 'city': city}
-        flag = main(url, para)
-        if flag:
-            print('%s爬取成功' % city)
-        else:
-            print('%s爬取失败' % city)
+        for kd in kdList:
+            print('爬取: %s' % kd)
+            para = {'first': 'true', 'pn': '1', 'kd': kd, 'city': city}
+            flag = main(url, para)
+            if flag:
+                print('%s爬取成功' % city)
+            else:
+                print('%s爬取失败' % city)

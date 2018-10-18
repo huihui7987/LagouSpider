@@ -106,3 +106,4 @@ class Http:
         content = items.replace('&#047;', '%2F').replace('&#061;', '%3D').replace('+', '%2B').replace( \
             ' ', '%20').replace('/', '%2F').replace('?', '%3F').replace('=', '%3D')
         return content
+
